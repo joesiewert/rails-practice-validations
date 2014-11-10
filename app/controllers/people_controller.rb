@@ -10,8 +10,12 @@ class PeopleController < ApplicationController
 
   def create
     @person = Person.new(person_params)
-    @person.save
-    redirect_to people_path, notice: "Person saved successfully"
+    if @person.save
+      redirect_to people_path, notice: "Person saved successfully"
+    else
+      @errors = @person.errors.full_messages
+      render :new
+    end
   end
 
   def edit

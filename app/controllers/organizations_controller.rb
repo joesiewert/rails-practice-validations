@@ -10,8 +10,12 @@ class OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.new(organization_params)
-    @organization.save
-    redirect_to organizations_path, notice: "Organization saved successfully"
+    if @organization.save
+      redirect_to organizations_path, notice: "Organization saved successfully"
+    else
+      @errors = @organization.errors.full_messages
+      render :new
+    end
   end
 
   def edit
