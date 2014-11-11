@@ -1,0 +1,15 @@
+<% if record.errors.any? %>
+  <div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+      <div class="alert alert-danger">
+        <strong><%= pluralize(record.errors.count, "error") %> prohibited this post from being saved:</strong>
+
+        <ul>
+          <% record.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
